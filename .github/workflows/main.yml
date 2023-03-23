@@ -1,4 +1,4 @@
-- name: GitHub Release from Tag
+  name: GitHub Release from Tag
   uses: eloquent/github-release-action@v3
   with:
     # Set to "true" to append automatically generated release notes to the release body.
