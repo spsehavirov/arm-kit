@@ -50,7 +50,7 @@ uint8_t KPAD_getKey(void) {
   
   delay(KPAD_STEP);
   
-  for (i=0; i<4; i++) {
+  for (i = 0; i < 4; i++) {
     GPIOD->ODR &= ~(0x0F << 6);             // Deaktivace vsech radku.
     GPIOD->ODR |= (~(1UL << i) << 6);       // Aktivace radku.
     
@@ -78,26 +78,26 @@ void KPAD_setup(void) {
   RCC->AHB1ENR |= (1UL << 3);
   
   // 2. Nastaveni pro radky - ZACATEK
-  for (i=6; i<10; i++) {
-    GPIOD->MODER &= ~(3UL << 2*i);    // Reset; INPUT
-    GPIOD->MODER |= (1UL << 2*i);     // Nastaveni pinu jako OUTPUT
+  for (i = 6; i < 10; i++) {
+    GPIOD->MODER   &= ~(3UL << 2*i);  // Reset; INPUT
+    GPIOD->MODER   |=  (1UL << 2*i);  // Nastaveni pinu jako OUTPUT
     
-    GPIOD->OTYPER &= ~(1UL << i);     // Push-pull (dvojcinny vystup)
+    GPIOD->OTYPER  &= ~(1UL << 1*i);  // Push-pull (dvojcinny vystup)
     
     GPIOD->OSPEEDR &= ~(3UL << 2*i);  // Reset; Low speed
-    GPIOD->OSPEEDR |= (2UL << i);     // High speed
+    GPIOD->OSPEEDR |=  (2UL << 2*i);  // High speed
     
-    GPIOD->PUPDR &= ~(3UL << 2*i);    // Reset; No pull-up/pull-down
+    GPIOD->PUPDR   &= ~(3UL << 2*i);  // Reset; No pull-up/pull-down
   }
   // 2. Nastaveni pro radky - KONEC
   
   
   // 3. Nastaveni pro sloupce - ZACATEK
-  for (i=0; i<4; i++) {
+  for (i = 0; i < 4; i++) {
     GPIOD->MODER &= ~(3UL << 2*i);    // Reset; INPUT
     
     GPIOD->PUPDR &= ~(3UL << 2*i);    // Reset; No pull-up/pull-down
-    GPIOD->PUPDR |= (1UL << 2*i);     // Pull-up
+    GPIOD->PUPDR |=  (1UL << 2*i);    // Pull-up
   }
   // 3. Nastaveni pro sloupce - KONEC                          
 }
