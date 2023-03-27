@@ -127,16 +127,16 @@ void LCD_setup(void) {
   RCC->AHB1ENR |= (1UL << 4);
   
   // 2. Nastaveni pinu pro LCD - ZACATEK
-  for (i=3; i<11; i++) {
-    GPIOE->MODER &= ~(3UL << 2*i);    // Reset; INPUT
-    GPIOE->MODER |= (1UL << 2*i);     // Nastaveni pinu jako OUTPUT
+  for (i = 3; i < 11; i++) {
+    GPIOE->MODER   &= ~(3UL << 2*i);  // Reset; INPUT
+    GPIOE->MODER   |=  (1UL << 2*i);  // Nastaveni pinu jako OUTPUT
     
-    GPIOE->OTYPER &= ~(1UL << i);     // Push-pull (dvojcinny vystup)
+    GPIOE->OTYPER  &= ~(1UL << 1*i);  // Push-pull (dvojcinny vystup)
     
     GPIOE->OSPEEDR &= ~(3UL << 2*i);  // Reset; Low speed
-    GPIOE->OSPEEDR |= (2UL << 2*i);   // High speed
+    GPIOE->OSPEEDR |=  (2UL << 2*i);  // High speed
     
-    GPIOE->PUPDR &= ~(3UL << 2*i);    // Reset; No pull-up/pull-down
+    GPIOE->PUPDR   &= ~(3UL << 2*i);  // Reset; No pull-up/pull-down
   }
   // 2. Nastaveni pinu a portu - KONEC
   
