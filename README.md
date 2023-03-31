@@ -1,10 +1,10 @@
 # SPŠE ARM kit
 
-## Obecné informace o projektu
+<!-- ## Obecné informace o projektu -->
 
 Projekt pro výuku základů programování MCU (registry) ve 3. ročníku.
 
-### Organizace projektu
+## Organizace projektu
 
 | Adresář               | Popis                                                           |
 |-----------------------|-----------------------------------------------------------------|
@@ -28,5 +28,4 @@ Projekt pro správnou funkci potřebuje (minimálně) následující balíčky p
 
 Testováno s `ARM Keil uVision 5.18.0.0`.
 
-## Copyright SPSE Havirov (c) 2023
-
+#### Copyright SPSE Havirov (c) 2023

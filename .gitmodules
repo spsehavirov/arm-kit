@@ -1,0 +1,3 @@
+[submodule "etc/man/styles/doxygen-awesome-css"]
+	path = etc/man/styles/doxygen-awesome-css
+	url = https://github.com/jothepro/doxygen-awesome-css.git
