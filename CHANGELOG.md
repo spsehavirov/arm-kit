@@ -2,8 +2,19 @@
 
 ## [next]:
 
+## [1.0.5] - 2023-03-31
 
-# [1.0.0][23-March-2023]
+Uprava repozitáře tak, aby umožňoval automatizaci
+pomocí GitHub Actions. Přechod na formát keepachangelog 1.1.0.
+
+### Added:
+ - (#0807930) Přidání podpory pro doxygen dokumentaci (WIP #3)
+ - (#8cf349e, #3e81e90) Automatický release na github
+
+### Modified
+ - (#20f8b62) formatování a malé úpravy souborů
+
+## [1.0.0] - 2023-03-23
 
 - `Del`: Odstranění historie ze všech driverů a ukázkových zdrojových kódů.
 - `Mod`:

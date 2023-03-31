@@ -3,7 +3,7 @@
 DOXYFILE_ENCODING      = UTF-8
 PROJECT_NAME           = "ARM Kit"
 PROJECT_NUMBER         =
-PROJECT_BRIEF          = "Popora pro výuku embedded systému na SPŠE Havířov."
+PROJECT_BRIEF          = "Embedded systémy na SPŠE Havířov"
 PROJECT_LOGO           = etc/man/styles/processor.png
 OUTPUT_DIRECTORY       = etc/man
 CREATE_SUBDIRS         = YES
