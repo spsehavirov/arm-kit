@@ -1,6 +1,12 @@
 # Změny a vývoj projektu
 
-## [next]:
+## [Unreleased]:
+
+## [1.1.5] - 2023-04-13
+
+### Added:
+ - (#5) Přidání podpory pro vlastní znaky.
+
 
 ## [1.0.5] - 2023-03-31
 
