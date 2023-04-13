@@ -107,7 +107,7 @@ void LCD_write_nibble(uint16_t nibble){
  *
  */
 void LCD_set(uint8_t cmd) {
-  LCD_busy(); // Casova prodleva pro zpracovani ridicich prikazu.
+  LCD_busy();                         // Casova prodleva pro zpracovani ridicich prikazu.
   
   GPIOE->BSRR = (1UL << (3+16));      // RS=0
   GPIOE->BSRR = (1UL << (4+16));      // R/W=0
@@ -192,13 +192,74 @@ void LCD_setCursor(uint8_t col, uint8_t row) {
 }
 
 /**
+ * @brief  Funkce pro zapis vlastniho znaku do CGRAM.
+ *
+ * @param  position Pozice na kterou bude ulozen vlastni znak.
+ *         customChar Vlastni znak.
+ *
+ */
+void LCD_customChar_write(uint8_t position, uint8_t *customChar) {
+  uint8_t i;
+  
+  if (position < 8) {
+    GPIOE->BSRR = (1UL << 3);               // RS=1
+    
+    LCD_set(0x40 | (position << 3));        // Presun do pameti CGRAM na zadanou pozici.
+                                            // 0x40 = 0. pozice v CGRAM address
+                                            // 0x48 = 1. pozice v CGRAM address
+                                            // 0x50 = 2. pozice v CGRAM address
+                                            // 0x58 = 3. pozice v CGRAM address
+                                            // 0x60 = 4. pozice v CGRAM address
+                                            // 0x68 = 5. pozice v CGRAM address
+                                            // 0x70 = 6. pozice v CGRAM address
+                                            // 0x78 = 7. pozice v CGRAM address
+
+    for (i = 0; i < 8; i++) {      
+      LCD_busy();                           // Casova prodleva pro zpracovani ridicich prikazu.
+  
+      GPIOE->BSRR = (1UL << 3);             // RS=1
+      GPIOE->BSRR = (1UL << (4+16));        // R/W=0
+      
+      LCD_write_nibble(customChar[i] >> 4); // Poslani 4 hornich bitu na zapis
+      LCD_write_nibble(customChar[i]);      // Poslani 4 dolnich bitu na zapis
+      
+      delay(1);                             // 1ms
+    }
+    
+    LCD_set(0x80);                          // Navrat do pameti DDRAM.
+  }
+}
+
+/**
+ * @brief  Funkce pro zobrazeni vlastniho znaku z CGRAM.
+ *
+ * @param  position Hodnota pozice znaku v CGRAM.
+ *
+ */
+void LCD_customChar_read(uint8_t position) {
+  if (position < 8) {
+    uint8_t cmd = position;
+    
+    LCD_busy();                         // Casova prodleva pro zpracovani ridicich prikazu.
+    
+    GPIOE->BSRR = (1UL << 3);           // RS=1
+    GPIOE->BSRR = (1UL << 4);           // R/W=1
+    
+    LCD_write_nibble(cmd >> 4);         // Poslani 4 hornich bitu na zapis
+    LCD_write_nibble(cmd);              // Poslani 4 dolnich bitu na zapis
+    
+    delay(1);                           // 1ms
+  }
+}
+
+/**
  * @brief  Funkce pro vypis 1 znaku na LCD.
  *
  * @param  data Kod pro vypisovany znak, pripadne konkretni znak.
  *
  */
 void LCD_put(uint8_t data) {
-  LCD_busy(); // Casova prodleva pro zpracovani ridicich prikazu.
+  LCD_busy();                     // Casova prodleva pro zpracovani ridicich prikazu.
   
   GPIOE->BSRR = (1UL << 3);       // RS=1
   GPIOE->BSRR = (1UL << (4+16));  // R/W=0
