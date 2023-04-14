@@ -2,10 +2,20 @@
 
 ## [Unreleased]:
 
+## [1.2.5] - 2023-04-14
+
+### Added:
+ - (#6) Úprava driveru `chrono.h`, při použití funkce `time()` přestal přípravek reagovat.
+    - Změna funkce `time()` z knihovny `time.h` na vlastní, kooperující se SysTick místo RTC.
+
+### Modified:
+ - Doplnění popisu k předchozímu releasu (1.1.5)
+
 ## [1.1.5] - 2023-04-13
 
 ### Added:
- - (#5) Přidání podpory pro vlastní znaky.
+ - (#5) Přidání podpory pro vlastní znaky: `LCD_customChar_write()` a `LCD_customChar_read()`.
+ - `LCD_customChar_table.h` prostor pro definování vlastních znaků.
 
 
 ## [1.0.5] - 2023-03-31

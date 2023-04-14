@@ -48,13 +48,22 @@
 #define ARM_KIT_CHRONO
 
 //#================================================================================================
+//#=== Osetreni pro pouziti funkce time() - I. cast, ZACATEK
+#include <stdlib.h>
+#include <time.h>
+
+#pragma import(__use_no_semihosting_swi)
+//#=== Osetreni pro pouziti funkce time() - I. cast, KONEC
+//#================================================================================================
+
+//#================================================================================================
 //#=== Casove funkce - ZACATEK
 
 #ifndef CLK_DIV
   #define CLK_DIV 1000          // Hodnota pro upravu CLK, viz hl. popisek.
 #endif
 
-static volatile uint32_t Ticks; // Vyuzito pro SysTick k nacitani Ticku pri podteceni.
+volatile uint32_t Ticks;        // Vyuzito pro SysTick k nacitani Ticku pri podteceni.
 
 /**
  * @brief  Rutina pro obsluhu preruseni SysTick.
@@ -78,7 +87,7 @@ void delay(uint32_t value) {
 /**
  * @brief Funkce pro umele pozdrzeni programu.
  *
- * @param[in] value Hodnota v rozmezi 0 - 65535.
+ * @param value Hodnota v rozmezi 0 - 65535.
  */
 void cekej(uint16_t value) {
   uint16_t i, j;
@@ -91,6 +100,25 @@ void cekej(uint16_t value) {
 }
 
 //#=== Casove funkce - KONEC
+//#================================================================================================
+
+//#================================================================================================
+//#=== Osetreni pro pouziti funkce time() - II. cast, ZACATEK
+/**
+ * @brief Nahrada puvodni funkce time() vracejici pocet sekund od 1. 1. 1970.
+ *        Tato funkce vraci pocet preteceni SysTick od spusteni pripravku.
+ *        V pripade pouziti pro generovani nahodnych cisel, je pri kazdem resetu pocet nulovan!
+*/
+time_t time(time_t *t) {  
+  return Ticks;
+}
+
+void _sys_exit(int returncode) {
+  while(1) {
+    /* __NOP(); */
+  }
+}
+//#=== Osetreni pro pouziti funkce time() - II. cast, KONEC
 //#================================================================================================
 
 #endif  /* ARM_KIT_CHRONO */
