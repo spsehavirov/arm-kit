@@ -22,8 +22,8 @@
 #define STEP        1000                      // Krok v ms pro pozdrzeni programu.
 #define CLK_DIV     1000                      // Hodnota pro upravu CLK, viz hl. popisek v driveru pro praci s CLK.
 
-#define LCD_COLS    8                         // Pocet sloupcu pouziteho displeje.
-#define LCD_ROWS    2                         // Pocet radku pouziteho displeje.
+#define LCD_COLS    20                        // Pocet sloupcu pouziteho displeje.
+#define LCD_ROWS    4                         // Pocet radku pouziteho displeje.
 
 #define KPAD_COLS   4                         // Pocet sloupcu pouziteho KPAD.
 #define KPAD_ROWS   4                         // Pocet radku pouziteho KPAD.

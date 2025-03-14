@@ -2,6 +2,15 @@
 
 ## [Unreleased]:
 
+## [1.3.0] - 2025-01-18
+
+### Added:
+ - Přidána podpora I2C sběrnice pro možnost připojení LCD
+ - Přidán ukázkový zdrojový kód `example_04-LCD_I2C_01.c`
+ - Přidány drivery:
+  - `I2C.h`
+  - `LCD_I2C.h`
+
 ## [1.2.5] - 2023-04-14
 
 ### Added:
