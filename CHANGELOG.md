@@ -2,6 +2,11 @@
 
 ## [Unreleased]:
 
+## [1.3.1] - 2025-08-31
+
+### Modified:
+ - (#8) Oprava KPAD, kdy načítání z klávesnice aktivovalo i interní LED.
+
 ## [1.3.0] - 2025-01-18
 
 ### Added:
