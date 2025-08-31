@@ -51,11 +51,10 @@ uint8_t KPAD_getKey(void) {
   delay(KPAD_STEP);
   
   for (i = 0; i < 4; i++) {
-    GPIOD->ODR &= ~(0x0F << 6);             // Deaktivace vsech radku.
-    GPIOD->ODR |= (~(1UL << i) << 6);       // Aktivace radku.
+    GPIOD->ODR &= ~(0x0F << 6);                 // Deaktivace vsech radku.
+    GPIOD->ODR |= ((~(1UL << i) & 0x0F) << 6);  // Aktivace radku.
     
     readout = GPIOD->IDR & 0x0F;            // Vymaskovani sloupcu.
-    
     switch(readout) {                       // Kontrola, zda nebylo stisknuto tlacitko ve vybranem radku a sloupci
       case 0x0E: return KPAD_KeyMap[i][0];
       case 0x0D: return KPAD_KeyMap[i][1];
@@ -103,3 +102,4 @@ void KPAD_setup(void) {
 }
 
 #endif  /* ARM_KIT_KPAD */
+
